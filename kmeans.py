@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+#%matplotlib inline # Add this if you run the code in jupyter notebook
 
 ### Initial Stage
 
@@ -21,6 +22,7 @@ for i in centroids.keys():
     plt.scatter(*centroids[i], color=colors[i])
 plt.xlim(0, 80)
 plt.ylim(0, 80)
+plt.show() # To show the plot
 
 ### Assignment Stage
 
@@ -39,8 +41,8 @@ def assignment(df, centroids):
     df['color'] = df['closest'].map(lambda x: colors[x])
     return df
 
-
 df = assignment(df, centroids)
+print(df.head())
 
 fig = plt.figure(figsize=(5, 5))
 plt.scatter(df['x'], df['y'], color=df['color'], alpha=0.5, edgecolor='k')
@@ -48,6 +50,7 @@ for i in centroids.keys():
     plt.scatter(*centroids[i], color=colors[i])
 plt.xlim(0, 80)
 plt.ylim(0, 80)
+plt.show()
 
 
 ### Update Stage
@@ -77,7 +80,8 @@ for i in old_centroids.keys():
     dx = (centroids[i][0] - old_centroids[i][0]) * 0.75
     dy = (centroids[i][1] - old_centroids[i][1]) * 0.75
     ax.arrow(old_x, old_y, dx, dy, head_width=2, head_length=3, fc=colors[i], ec=colors[i])
-
+plt.show()
+    
 
 ### Repeat Assigment Stage
 
@@ -90,6 +94,8 @@ for i in centroids.keys():
     plt.scatter(*centroids[i], color=colors[i])
 plt.xlim(0, 80)
 plt.ylim(0, 80)
+plt.show()
+
 
 ### Continue until all assigned centroids no longer move
 
